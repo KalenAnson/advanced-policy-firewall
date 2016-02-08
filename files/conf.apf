@@ -28,7 +28,7 @@ IFACE_UNTRUSTED="eth0"
 
 # Trusted Network interface(s); all traffic on defined interface(s) will by-pass
 # ALL firewall rules, format is white space or comma separated list.
-IFACE_TRUSTED=""
+IFACE_TRUSTED="eth1"
 
 # This option enables IPv6 support for APF and loads all appropriate IPv6 kernel
 # modules. This feature depends on IPv6 support being enabled in your networking
@@ -287,7 +287,7 @@ BLK_PRVNET="0"
 # some point become live address space. The USE_RD option further in this file
 # allows for dynamic updating of this list on every full restart of APF. Refer
 # to the 'internals/reserved.networks' file for listing of address space.
-BLK_RESNET="1"
+BLK_RESNET="0"
 
 # Block all ident (tcp 113) requests in and out of the server IF the port is
 # not already opened in *_TCP_CPORTS. This uses a REJECT target to make sure
@@ -356,7 +356,7 @@ SYSCTL_OVERFLOW="0"
 # actually connecting to the services. They are only for helping maintain your
 # connection to the services [ESTABLISHED,RELATED connection states, not NEW].
 HELPER_SSH="1"
-HELPER_SSH_PORT="22"
+HELPER_SSH_PORT="20020"
 
 HELPER_FTP="1"
 HELPER_FTP_PORT="21"
@@ -373,7 +373,7 @@ HELPER_FTP_DATA="20"
 # IG_ICMP_TYPES="3,5,11,0,30,8"
 
 # Common inbound (ingress) TCP ports
-IG_TCP_CPORTS="22"
+IG_TCP_CPORTS="21,80,20020"
 
 # Common inbound (ingress) UDP ports
 IG_UDP_CPORTS=""
@@ -397,13 +397,13 @@ IG_ICMP_TYPES="3,5,11,0,30,8"
 # EG_ICMP_TYPES="all"
 
 # Outbound (egress) filtering 
-EGF="0"
+EGF="1"
 
 # Common outbound (egress) TCP ports
-EG_TCP_CPORTS="21,25,80,443,43"
+EG_TCP_CPORTS="25,43,53"
 
 # Common outbound (egress) UDP ports
-EG_UDP_CPORTS="20,21,53"
+EG_UDP_CPORTS="53"
 
 # Common ICMP outbound (egress) types
 # 'internals/icmp.types' for type definition; 'all' is wildcard for any
@@ -471,7 +471,7 @@ DLIST_DSHIELD_URL="http://feeds.dshield.org/top10-2.txt"
 # will update the reserved networks list in order to prevent new ip assignments 
 # on the internet from getting blocked; this option is only important when
 # BLK_RESNET is set to enabled.
-DLIST_RESERVED="1"
+DLIST_RESERVED="0"
 DLIST_RESERVED_URL="http://cdn.rfxn.com/downloads/reserved.networks"
 
 # ECN is an extension which helps reduce congestion. Unfortunately some
